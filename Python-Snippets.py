@@ -1,3 +1,2 @@
-#Usefule Python Code Snippits
-
+#Usefule Python Code Snips
 
