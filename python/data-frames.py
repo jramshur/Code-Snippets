@@ -58,3 +58,13 @@ df.loc[df['column_name'].isin(some_values)]
 df.loc[(df['column_name'] == some_value) & df['other_column'].isin(some_values)]
 # isin returns a boolean Series, so to select rows whose value is not in some_values, negate the boolean Series using ~:
 df.loc[~df['column_name'].isin(some_values)]
+
+
+## Rename column
+df.rename(columns={'oldName1': 'newName1', 'oldName2': 'newName2'}, inplace=True)
+
+Size of DF
+# Use the `shape` property
+print(df.shape)
+# Or use the `len()` function with the `index` property
+print(len(df.index))
