@@ -29,7 +29,9 @@ df[ df["num_pets"] > df[ "num_children"] ]
 # people older than 40 who own pets
 df[ (df["age"] > 40) & (df["num_pets"] > 0) ] 
 
-## drop a column
+## keep/drop a column
+#only keep columns 'col1' and 'col2'
+df[['col1', 'col2']]
 # df itself is not modified; a copy is returned instead
 df.drop(["age","num_children"],axis=1)
 
