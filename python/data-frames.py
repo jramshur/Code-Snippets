@@ -65,8 +65,12 @@ df.loc[~df['column_name'].isin(some_values)]
 ## Rename column
 df.rename(columns={'oldName1': 'newName1', 'oldName2': 'newName2'}, inplace=True)
 
-Size of DF
+## Size of DF
 # Use the `shape` property
 print(df.shape)
 # Or use the `len()` function with the `index` property
 print(len(df.index))
+
+## Describe DF
+df.describe()
+df['col1'].unique()
