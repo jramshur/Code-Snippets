@@ -3,4 +3,4 @@ Power Query M-Code Snippets
 Title: GroupBy with Concatenate
 Purpose: When using a groupby operation, you can use Text.Combine to concatenate all grouped rows for one column. 
 Code Example:
-    #"Grouped Rows" = Table.Group(#"MyPreviousStep", {"Column1"}, {{"Column2 Values", each Text.Combine([Column2],","), type text}})
+    #"Grouped Rows" = Table.Group(#"PreviousStepName", {"GroupingColumnName"}, {{"NewColumnName", each Text.Combine([ColumnNameOfValuesToGroup],", "), type text}})
