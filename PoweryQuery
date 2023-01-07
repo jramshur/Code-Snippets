@@ -4,3 +4,32 @@ Title: GroupBy with Concatenate
 Purpose: When using a groupby operation, you can use Text.Combine to concatenate all grouped rows for one column. 
 Code Example:
     #"Grouped Rows" = Table.Group(#"PreviousStepName", {"GroupingColumnName"}, {{"NewColumnName", each Text.Combine([ColumnNameOfValuesToGroup],", "), type text}})
+
+
+Title: Power Query function to extract errors from a table
+
+let
+    Source = (myInputTable as table, myTableNameText as text, myIndexColumn as text, myNameColumn as text) => let
+    // myInputTable is the the source query/table in which we will extract errors
+    // myTableNameText is the text to display in the TableName column. This will indicate which table the error is sourced from if appending error tables to one table.
+    // myIndexColumn is the name of the index/ID column for the input table.
+    // myNameColumn is the name of a table column that choose to help identify errors in the resulting table. The combination of IndexColumn and NameColumn will help run down the errors in the data.
+        Source = myInputTable,
+        #"Renamed Index Column" = Table.RenameColumns(Source,{{myIndexColumn, "RowIndex"}}),
+        #"Renamed Name Column" = Table.RenameColumns(#"Renamed Index Column",{{myNameColumn, "RowName"}}),
+        #"Kept Errors" = Table.SelectRowsWithErrors( #"Renamed Name Column", Table.ColumnNames(#"Renamed Name Column")),
+        // Each cell contains a row record that contains all the fields for the row.
+        #"Add Record Column" = Table.AddColumn(#"Kept Errors", "CURRENT ROW", each _),
+        #"Added Custom" = Table.AddColumn(#"Add Record Column", "RECORD TO TABLE", each Record.ToTable([CURRENT ROW])),
+        #"Expanded RECORD TO TABLE" = Table.ExpandTableColumn(#"Added Custom", "RECORD TO TABLE", {"Name", "Value"}, {"ColumnName", "Value"}),
+        #"Kept Errors1" = Table.SelectRowsWithErrors(#"Expanded RECORD TO TABLE", {"Value"}),
+        #"Added Column: CHECK ERRORs" = Table.AddColumn(#"Kept Errors1", "CHECK ERRORS", each try [Value]),
+        #"Expanded CHECK ERRORS" = Table.ExpandRecordColumn(#"Added Column: CHECK ERRORs", "CHECK ERRORS", {"Error"}, {"Error"}),
+        #"Expanded Error" = Table.ExpandRecordColumn(#"Expanded CHECK ERRORS", "Error", {"Reason", "Message", "Detail"}, {"Error.Reason", "Error.Message", "Error.Detail"}),
+        #"Added Column: TableName" = Table.AddColumn(#"Expanded Error", "TableName", each myTableNameText),
+        #"Keep useful columns" = Table.SelectColumns(#"Added Column: TableName",{"TableName", "RowIndex", "RowName", "ColumnName", "Error.Reason", "Error.Message", "Error.Detail"}),
+        #"Changed Type" = Table.TransformColumnTypes(#"Keep useful columns",{{"TableName", type text}, {"RowIndex", Int64.Type}, {"RowName", type text}, {"ColumnName", type text}, {"Error.Reason", type text}, {"Error.Message", type text}, {"Error.Detail", type text}})
+    in
+         #"Changed Type"
+in
+    Source
