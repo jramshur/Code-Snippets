@@ -1,0 +1,4 @@
+Purpose: When using a groupby operation, you can use Text.Combine to concatenate all grouped rows for one column. 
+
+Code Example:
+    #"Grouped Rows" = Table.Group(#"PreviousStepName", {"GroupingColumnName"}, {{"NewColumnName", each Text.Combine([ColumnNameOfValuesToGroup],", "), type text}})
