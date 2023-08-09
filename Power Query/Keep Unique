@@ -1,0 +1,3 @@
+= let columnNames = {"Column1"}, addCount = Table.Group(#"Previous Step Name", columnNames, {{"Count", Table.RowCount, type number}}), selectDuplicates = Table.SelectRows(addCount, each [Count] > 1), removeCount = Table.RemoveColumns(selectDuplicates, "Count") in Table.Join(#"Previous Step Name", columnNames, removeCount, columnNames, JoinKind.Inner)
+
+Source: https://wmfexcel.com/2022/04/07/a-twist-to-turn-keep-duplicates-into-keep-unique-in-powerquery/
