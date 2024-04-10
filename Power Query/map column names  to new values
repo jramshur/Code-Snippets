@@ -1,1 +1,13 @@
+// Purpose: this set of power query steps renames columns. 
+// 1. A list of renaming values from old name to new name are loaded from a table / mapping table.
+// 2. select relevant columns from mapping table
+// 3. convert table into a list of list. This is the format that Table.RenameColumns expects.
+// 4. rename columns of data table (tblData) using Table.RenameColumns
 
+let
+    Source = tblWithNameMapping,
+    Mapping = Table.SelectColumns(Source,{"Old_ColumnName", "New_ColumnName"}),
+    MappingList = Table.ToRows(#"Remove n/a column names"),
+    #"Rename all columns" = Table.RenameColumns(tblData,MappingList),
+in
+    #"Rename all columns"
