@@ -1,0 +1,11 @@
+    (Source as table) as table =>
+    
+        let
+            SourceProfile = Table.Buffer(Table.Profile(Source)),
+            // Buffer used to remove unexpected 'Expression.Error' occuring on some rows
+            SourceProfileEmptyRows = Table.SelectRows(SourceProfile, each [Count] = [NullCount]),
+            lstEmptyColumns = SourceProfileEmptyRows[Column],
+        
+            SourceRemoveColumns = Table.RemoveColumns(Source, lstEmptyColumns)
+        in 
+            SourceRemoveColumns
