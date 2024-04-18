@@ -4,9 +4,7 @@ Assuming the column you want to transform is named `Column1`, and you want to re
 ```
 let
     Source = ... , // Your data source here
-    TransformedTable = Table.TransformColumns(Source, {
-        {"Column1", each Text.Remove(_, {"a", "b", "c"}), type text}
-    })
+    TransformedTable = Table.TransformColumns(Source, {{"Column1", each Text.Remove(_, {"a", "b", "c"}), type text}})
 in
     TransformedTable
    ```
