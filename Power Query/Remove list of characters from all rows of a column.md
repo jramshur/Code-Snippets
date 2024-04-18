@@ -24,3 +24,6 @@ in
 This approach is ideal when you want to clean text data within a column by removing unwanted characters across an entire table efficiently. This method can easily be adapted for other text transformations by replacing `Text.Remove` with other text functions like `Text.Replace` or combining it with functions like `Text.ToLower` if needed.
 
 Using `Table.TransformColumns` is particularly effective for applying consistent transformations across multiple columns or when integrating multiple data cleaning steps into a single, streamlined Power Query transformation.
+
+### Useful list of charachters
+`{"(", ")", "[", "]", "{", "}", " ", "-", "/", "#", "&", "*"}`
