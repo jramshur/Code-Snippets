@@ -30,6 +30,10 @@ Below is an overview of useful ASCII character ranges that are commonly used in 
 - Basic Punctuation `{"!".."/"}` 
 - `{"(", ")", "[", "]", "{", "}", " ", "-", "/", "\", "|", "#", "&", "*", ".", "," , ";", ":", "<", ">", "?", "^", "%", "$", "@", "!", "~", "=", "+"}`
 
+### Useful code
+- Remove all but numberd, lowercase letters, and ">" 
+`Table.TransformColumns(#Source, {{"Column1", each Text.Select(_, List.Transform({48..57, 97..122, 62}, each Character.FromNumber(_))), type text}})`
+
 
 ## 1. Using `Text.Select` to Keep Certain Characters
 
