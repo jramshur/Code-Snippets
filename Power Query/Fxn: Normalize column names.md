@@ -18,8 +18,8 @@ Below is the Power Query M code that performs the aforementioned transformations
 ```
 = (Source as table) as table =>
     let
-        ColName_clean = Table.TransformColumnNames(Source, Text.Clean) //optional,
-        ColName_trim = Table.TransformColumnNames(ColName_clean, Text.Trim) // optional,
+        ColName_clean = Table.TransformColumnNames(Source, Text.Clean), //optional
+        ColName_trim = Table.TransformColumnNames(ColName_clean, Text.Trim), // optional
         ColName_lower = Table.TransformColumnNames(ColName_trim, Text.Lower),
         ColName_filtered = Table.TransformColumnNames(ColName_lower, each Text.Select(_, "abcdefghijklmnopqrstuvwxyz0123456789>"))
     in 
