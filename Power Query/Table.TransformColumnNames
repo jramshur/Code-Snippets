@@ -1,9 +1,0 @@
-// example 1 - replace spaces in column name
-= Table.TransformColumnNames(Source, (columnName as text) as text => Text.Replace(columnName, " ", ""))
-
-//example 2 - trim, clean, lower case column names
-= Table.TransformColumnNames(Source, Text.Trim)
-= Table.TransformColumnNames(Source, Text.Clean)
-= Table.TransformColumnNames(Source, Text.Lower)
-
-
