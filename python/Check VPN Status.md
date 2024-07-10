@@ -4,6 +4,7 @@ This Python code checks the VPN status by pinging a specified host 4 times. It r
 
 ## Requirements
 
+- Choose a host that is only accessable when connectced to VPN. 
 - Python 3.x
 - `subprocess` module (comes with Python standard library)
 - `platform` module (comes with Python standard library)
@@ -34,8 +35,8 @@ def check_vpn_status(host):
         return False, f"An error occurred: {e}"
 
 def main():
-    # Host to ping
-    host_to_check = 'ent.core.medtronic.com'
+    # VPN host to ping
+    host_to_check = 'my.internal.host.com' # replace this with your host
 
     # Check VPN status
     vpn_state, status_message = check_vpn_status(host_to_check)
