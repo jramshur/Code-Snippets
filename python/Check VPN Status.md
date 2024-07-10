@@ -1,6 +1,6 @@
-# VPN Status Check Script
+# PYTHON: Check VPN Connection Status
 
-This Python script checks the VPN status by pinging a specified host 5 times. It returns the VPN state (connected or not) and a status message.
+This Python code checks the VPN status by pinging a specified host 4 times. It returns the VPN state (connected or not) and a status message.
 
 ## Requirements
 
@@ -18,18 +18,18 @@ def check_vpn_status(host):
     try:
         # Determine the appropriate ping command based on the OS
         if platform.system().lower() == 'windows':
-            command = ['ping', '-n', '5', '-w', '1000', host]  # Timeout in milliseconds, ping 5 times
+            command = ['ping', '-n', '5', '-w', '1000', host]  # Timeout in 1000 milliseconds, ping 4 times
         else:
-            command = ['ping', '-c', '5', '-W', '1', host]  # Timeout in seconds, ping 5 times
+            command = ['ping', '-c', '5', '-W', '1', host]  # Timeout in 1 seconds, ping 4 times
 
         # Run the ping command
         output = subprocess.run(command, capture_output=True, text=True)
         
         # Check if the ping was successful
         if output.returncode == 0:
-            return True, f"VPN is connected. Successfully pinged {host} 5 times."
+            return True, f"VPN is connected. Successfully pinged {host}."
         else:
-            return False, f"VPN is not connected. Failed to ping {host} 5 times."
+            return False, f"VPN is not connected. Failed to ping {host}."
     except Exception as e:
         return False, f"An error occurred: {e}"
 
@@ -46,37 +46,37 @@ if __name__ == '__main__':
 ```
 
 ## Explanation
-Importing Modules:
-
+### Importing Modules:
 The script imports subprocess to run system commands and platform to detect the operating system.
-Defining the check_vpn_status Function:
 
+### Defining the check_vpn_status Function:
 The function accepts a host parameter, which is the hostname to ping.
-Determining the Ping Command:
 
+### Determining the Ping Command:
 Based on the operating system, the appropriate ping command is chosen.
-For Windows: ping -n 5 -w 1000 host (5 pings with a 1-second timeout each)
-For Unix/Linux: ping -c 5 -W 1 host (5 pings with a 1-second timeout each)
-Running the Ping Command:
+- For Windows: ping -n 5 -w 1000 host (5 pings with a 1-second timeout each)
+- For Unix/Linux: ping -c 5 -W 1 host (5 pings with a 1-second timeout each)
 
+### Running the Ping Command:
 The subprocess.run function executes the ping command and captures the output.
-Checking the Ping Results:
 
+### Checking the Ping Results:
 The function checks the return code of the ping command.
 If the return code is 0, it means at least one ping was successful, indicating the VPN is connected.
 Otherwise, it means the ping failed, indicating the VPN is not connected.
-Handling Exceptions:
 
+### Handling Exceptions:
 Any exceptions that occur during the execution of the ping command are caught and returned as part of the status message.
-Defining the main Function:
 
+### Defining the main Function:
 The main function defines the host to check, calls the check_vpn_status function, and prints the status message.
 Using if __name__ == '__main__'::
 
 This block ensures that the main function is only executed when the script is run directly, not when it is imported as a module.
-Usage
+
+## Usage
 Save the script to a file, e.g., check_vpn_status.py.
 Run the script using Python:
-bash
-Copy code
+``` bash
 python check_vpn_status.py
+```
