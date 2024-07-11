@@ -147,14 +147,14 @@ def check_vpn_status(host):
         return False, f"VPN STATUS CHECK: An error occurred: {e}"
 
 def main():
-    # User defined variables
+    # User defined variables. Thise will need to be modified for your enviornment.
     vpn_host = 'ent.core.medtronic.com'  # host used to check vpn status
     oracle_lib_dir = r"C:\APPS\oracle\product\19.0.0\client_1\bin"  # Oracle client bin directory
-    oracle_tnsnames_alias = 'lsh1.corp.medtronic.com'  # alias used in tnsnames.ora file
-    oracle_username = 'ramshj1'
+    oracle_tnsnames_alias = 'my_tnsnames_alias'  # alias used in tnsnames.ora file
+    oracle_username = 'myOracleUsername'
     env_var_name = 'ORACLE_DB_PASSWORD'  # name of system environment variable containing password
-    sql_query = "SELECT * FROM BA_MDT22045CSTAIL_PRD.INDEX_SURGERY"  # sql query to execute
-    csv_filepath = r'C:\Users\Ramshj1\OneDrive - Medtronic PLC\Power BI Maintenance Team\Power BI Reports\Development - Draft Reports\Dev\Temp Data\LSH Export - INDEX_SURGERY.csv'
+    sql_query = "SELECT * FROM myuser.mytable"  # sql query to execute
+    csv_filepath = r'C:\Users\MyUser\Documents\my_csv_filename.csv'
     
     #Check VPN connectivity by pinging a host that is only available when connected to VPN.
     vpn_connected, vpn_message = check_vpn_status(vpn_host)
