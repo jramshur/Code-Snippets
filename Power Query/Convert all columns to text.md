@@ -30,9 +30,9 @@ This method is beneficial for scenarios where the schema of the table may change
 
 ```
 Table.TransformColumnTypes(
-	YourPreviousStepName, 
+	Source, 
 	List.Transform(
-		Table.ColumnNames(YourPreviousStepName), 
+		Table.ColumnNames(Source), 
 		each {_, type text}
 	)
 )
