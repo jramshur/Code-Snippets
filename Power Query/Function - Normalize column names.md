@@ -21,7 +21,7 @@ Below is the Power Query M code that performs the aforementioned transformations
         ColName_clean = Table.TransformColumnNames(Source, Text.Clean), //optional
         ColName_trim = Table.TransformColumnNames(ColName_clean, Text.Trim), // optional
         ColName_lower = Table.TransformColumnNames(ColName_trim, Text.Lower),
-        ColName_filtered = Table.TransformColumnNames(ColName_lower, each Text.Select(_, "abcdefghijklmnopqrstuvwxyz0123456789>"))
+        ColName_filtered = Table.TransformColumnNames(ColName_lower, each Text.Select(_, {"0".."9", "a".."z", ">"}))
     in 
         ColName_filtered
 ```
@@ -51,7 +51,7 @@ Below is the Power Query M code that performs the aforementioned transformations
 
 ### Usage of `Text.Select`
 
--   `Text.Select(_, "abcdefghijklmnopqrstuvwxyz0123456789>")` effectively filters each column name to include only the specified characters. This function is crucial for aligning column names with technical and business standards that may dictate specific formatting rules.
+-   `Text.Select(_, {"0".."9", "a".."z", ">"})` effectively filters each column name to include only the specified characters. This function is crucial for aligning column names with technical and business standards that may dictate specific formatting rules.
 
 ### Conclusion
 
