@@ -1,0 +1,8 @@
+		FILTER(
+			SUMMARIZE(
+				ColumnNameMappings,
+				ColumnNameMappings[DBAll_ColumnName],
+				"Count", COUNT(ColumnNameMappings[DBAll_ColumnName])
+			),
+			[Count] > 1
+		)
