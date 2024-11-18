@@ -1,5 +1,5 @@
 
-# Power Query M Code for Duplicating Rows Based on value in another column
+# Duplicating Rows Based on value in another column
 
 ## Overview
 
