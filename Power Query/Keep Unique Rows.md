@@ -1,5 +1,5 @@
 
-# **Keep Unique Values in Power Query**
+# **Keep Rows with Unique Values**
 
 This guide demonstrates how to identify and keep unique rows in a dataset using Power Query. The approach involves isolating duplicate values and removing them, leaving only the unique rows in the final output.
 
