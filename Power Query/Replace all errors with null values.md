@@ -1,4 +1,4 @@
- # Replacing Error Values with Null in Power Query
+ # Replacing All Error Values in a Table with Null
 
 Power Query code to replace all error values in all columns with `null`.  Uses the `Table.ReplaceErrorValues` function along with `List.Transform` to achieve this dynamically for all columns.
 
