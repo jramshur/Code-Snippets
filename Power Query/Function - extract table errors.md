@@ -1,4 +1,4 @@
-# Power Query Function to Extract Errors from a Table
+# Extract Errors from a Table
 
 ## Description
 
