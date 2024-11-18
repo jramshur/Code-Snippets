@@ -1,4 +1,4 @@
-# Using GroupBy to concatanate row values into a single text string
+# Concatanate row values into a single text string using GroupBy
 
 ## General Example
 Using `Table.Group` to build a list of concatenated values for a given grouping
