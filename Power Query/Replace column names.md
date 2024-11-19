@@ -1,5 +1,5 @@
 
-# Rename/Remap Column Names
+# Replace Column Names using a mapping table
 
 ## Purpose
 This Power Query script contains a solution for renaming columns in a table using a mapping table and the `Table.RenameColumns` function.
