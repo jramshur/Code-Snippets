@@ -1,6 +1,6 @@
-## Power Query Column Name Standardization
+## Column Name Standardization
 
-This document outlines the procedure to standardize the column names of a table in Power Query. The aim is to ensure column names consist only of lowercase letters, numbers, and the greater-than symbol (">"). This standardization facilitates easier data manipulation and analysis by maintaining consistency and predictability in column naming conventions.
+This procedure is used to standardize the column names using Power Query. The aim is to ensure column names consist only of lowercase letters, numbers, and the greater-than symbol (">"). This standardization facilitates easier data manipulation and analysis by maintaining consistency and predictability in column naming conventions.
 
 ### Overview
 
@@ -11,7 +11,20 @@ The provided Power Query function cleans and formats the column names by:
 3.  Converting all letters to lowercase.
 4.  Filtering out any characters that are not lowercase letters, numbers, or the ">" symbol.
 
-### Power Query Function
+### Example of standardization of column names
+
+| **Original Column Name**          | **Standardized Column Name** |
+|-----------------------------------|------------------------------|
+| Name                              | name                         |
+| E-mail Address                    | emailaddress                 |
+| Date of Birth (YYYY/MM/DD)        | dateofbirthyyyymmdd          |
+| Age (Years)                       | ageyears                     |
+| Comments/Feedback                 | commentsfeedback             |
+| Income [$]                        | income                       |
+| Phone > Home > Mobile             | phone>home>mobile            |
+
+
+## Power Query Function
 
 Below is the Power Query M code that performs the aforementioned transformations:
 
@@ -52,7 +65,3 @@ Below is the Power Query M code that performs the aforementioned transformations
 ### Usage of `Text.Select`
 
 -   `Text.Select(_, {"0".."9", "a".."z", ">"})` effectively filters each column name to include only the specified characters. This function is crucial for aligning column names with technical and business standards that may dictate specific formatting rules.
-
-### Conclusion
-
-The function simplifies the process of cleaning and standardizing column names, making the data set more structured and easier to work with in Power BI and other data processing tools. This standardization is particularly useful in scenarios involving data integration from multiple sources, ensuring that column names do not cause errors in data processing scripts or queries due to inconsistent naming conventions.
