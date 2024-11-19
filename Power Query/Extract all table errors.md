@@ -2,7 +2,7 @@
 
 ## Description
 
-This Power Query function extracts rows containing errors from a specified table, transforms and annotates the data for easier error identification and analysis.
+This Power Query function extracts rows containing errors from a specified table and then transforms and annotates the data for easier error identification and analysis.
 
 ## Parameters
 - **inputTable** (table): The source table from which errors will be extracted.
