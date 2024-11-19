@@ -1,4 +1,4 @@
-# Create Normalized Column
+# Standardized Column Values
 
 `Create Normalized Column` is a Power Query function that duplicates a specified column in a table and transforms the duplicated column to retain only specified characters. This function also allows optional case transformation to lowercase.
 
