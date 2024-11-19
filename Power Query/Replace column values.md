@@ -1,4 +1,4 @@
-# Replace cell values based on mapping table
+# Replace column values based on mapping table
 
 This document explains how to use the `ReplaceValuesInColumn` function in Power Query to replace values in a specific column based on a mapping table. The function takes a source table, the name of the column to process, and a replacement table with `OldValue` and `NewValue` columns as inputs.
 
