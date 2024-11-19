@@ -147,7 +147,7 @@ def check_vpn_status(host):
         return False, f"VPN STATUS CHECK: An error occurred: {e}"
 
 def main():
-    # User defined variables. Thise will need to be modified for your enviornment.
+    # User defined variables. Thise will need to be modified for your enviroment.
     vpn_host = 'ent.core.medtronic.com'  # host used to check vpn status
     oracle_lib_dir = r"C:\APPS\oracle\product\19.0.0\client_1\bin"  # Oracle client bin directory
     oracle_tnsnames_alias = 'my_tnsnames_alias'  # alias used in tnsnames.ora file
