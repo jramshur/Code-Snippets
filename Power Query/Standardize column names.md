@@ -1,17 +1,51 @@
 ## Column Name Standardization
 
-This procedure is used to standardize the column names using Power Query. The aim is to ensure column names consist only of lowercase letters, numbers, and the greater-than symbol (">"). This standardization facilitates easier data manipulation and analysis by maintaining consistency and predictability in column naming conventions.
+## Overview
 
-### Overview
+This Power Query function standardizes column names in a dataset to ensure they are consistent and easy to work with. The function performs the following transformations:
 
-The provided Power Query function cleans and formats the column names by:
+1. Removes non-printable characters.
+2. Trims leading and trailing whitespace.
+3. Converts all characters to lowercase.
+4. Retains only specific characters: lowercase letters (`a-z`), numbers (`0-9`), and the greater-than symbol (`>`).
 
-1.  Removing non-printable characters.
-2.  Trimming leading and trailing whitespace.
-3.  Converting all letters to lowercase.
-4.  Filtering out any characters that are not lowercase letters, numbers, or the ">" symbol.
+These transformations help enforce uniform naming conventions, reducing the likelihood of errors during data processing.
 
-### Example of standardization of column names
+
+## Power Query Function Code
+
+```powerquery
+= (Source as table) as table =>
+    let
+        ColName_clean = Table.TransformColumnNames(Source, Text.Clean), // optional
+        ColName_trim = Table.TransformColumnNames(ColName_clean, Text.Trim), // optional
+        ColName_lower = Table.TransformColumnNames(ColName_trim, Text.Lower),
+        ColName_filtered = Table.TransformColumnNames(ColName_lower, each Text.Select(_, {"0".."9", "a".."z", ">"}))
+    in 
+        ColName_filtered
+```
+
+## Key Changes in Column Names
+
+1. **Removed Non-Printable Characters**:
+
+2. **Trimmed Leading/Trailing Whitespace**:
+   - `" Name "` → `"name"`
+
+3. **Converted to Lowercase**:
+   - `"E-mail Address"` → `"emailaddress"`
+
+4. **Retained Only Allowed Characters**:
+   - `"Date of Birth (YYYY/MM/DD)"` → `"dateofbirthyyyymmdd"`
+   - `"Age (Years)"` → `"ageyears"`
+   - `"Income [$]"` → `"income"`
+
+5. **Preserved the Greater-Than Symbol (`>`)**:
+   - `"Phone > Home > Mobile"` → `"phone>home>mobile"`
+   - Keeping the '>' was useful for my use case. It may not be useful for all use cases. 
+
+
+## Example of column transformations
 
 | **Original Column Name**          | **Standardized Column Name** |
 |-----------------------------------|------------------------------|
@@ -24,44 +58,12 @@ The provided Power Query function cleans and formats the column names by:
 | Phone > Home > Mobile             | phone>home>mobile            |
 
 
-## Power Query Function
+## Purpose and Benefits
 
-Below is the Power Query M code that performs the aforementioned transformations:
+This function simplifies and standardizes column names, ensuring:
 
-```
-= (Source as table) as table =>
-    let
-        ColName_clean = Table.TransformColumnNames(Source, Text.Clean), //optional
-        ColName_trim = Table.TransformColumnNames(ColName_clean, Text.Trim), // optional
-        ColName_lower = Table.TransformColumnNames(ColName_trim, Text.Lower),
-        ColName_filtered = Table.TransformColumnNames(ColName_lower, each Text.Select(_, {"0".."9", "a".."z", ">"}))
-    in 
-        ColName_filtered
-```
+- Consistency across datasets.
+- Easier integration and manipulation in tools like Power BI.
+- Elimination of potential errors caused by special characters or inconsistent naming conventions.
 
-### Step-by-Step Explanation
-
-1.  **Cleaning Column Names (`ColName_clean`)**:
-    
-    -   **Function Used**: `Text.Clean`
-    -   **Purpose**: Removes all non-printable characters from the column names.
-    -   **Example**: Converts `"Name\n"` to `"Name"`.
-2.  **Trimming Column Names (`ColName_trim`)**:
-    
-    -   **Function Used**: `Text.Trim`
-    -   **Purpose**: Trims leading and trailing whitespace from the column names cleaned in the previous step.
-    -   **Example**: Converts `" Name "` to `"Name"`.
-3.  **Lowercasing Column Names (`ColName_lower`)**:
-    
-    -   **Function Used**: `Text.Lower`
-    -   **Purpose**: Converts all characters in the column names to lowercase for uniformity.
-    -   **Example**: Converts `"Name"` to `"name"`.
-4.  **Filtering Characters (`ColName_filtered`)**:
-    
-    -   **Function Used**: `Text.Select`
-    -   **Purpose**: Retains only the characters specified (lowercase letters, numbers, and ">") in the column names.
-    -   **Example**: Converts `"name-!@#"[>24]` to `"name>24"`.
-
-### Usage of `Text.Select`
-
--   `Text.Select(_, {"0".."9", "a".."z", ">"})` effectively filters each column name to include only the specified characters. This function is crucial for aligning column names with technical and business standards that may dictate specific formatting rules.
+Using this function ensures that your datasets are prepared for seamless processing and analysis.
