@@ -1,6 +1,6 @@
 # PYTHON: Check VPN Connection Status
 
-This Python code checks the VPN status by pinging a specified host 4 times. It returns the VPN state (connected or not) and a status message.
+This Python code checks the VPN status by pinging a user-defined, internal host 4 times. It returns the VPN state (connected or not) and a status message.
 
 ## Requirements
 
