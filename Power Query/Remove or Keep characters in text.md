@@ -1,7 +1,7 @@
   
-# Remove/Keep characters in rows
+# Remove/Keep characters in text
 
-This document outlines various methods to clean text data in Power Query by removing unwanted characters or keeping only wanted characters from a column. We will cover three main approaches. Also provided is a useful table of ASCII character ranges.
+This document outlines various methods to clean text data in Power Query by removing unwanted characters or keeping wanted characters from a text column. We will cover three main approaches. Also provided is a useful table of ASCII character ranges.
 
 
 ## ASCII Character Ranges for Text Cleaning in Power Query
