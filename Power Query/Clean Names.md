@@ -121,11 +121,21 @@ in
 
 ---
 
+## Example Input and Output
+| Input Text | Abbreviations List | Remove Single Letters | Output Text |
+|------------|-------------------|----------------------|-------------|
+| "Dr John A Smith MD" | `{"DR", "MD"}` | `true` | "JOHN SMITH" |
+| "Drake P Jr Johnson" | `{"JR"}` | `false` | "DRAKE P JOHNSON" |
+| "Dr. Jane Doe" | `{"DR"}` | `true` | "JANE DOE" |
+| "MD Anderson Cancer Center" | `{"MD"}` | `false` | "ANDERSON CANCER CENTER" |
+| "A B C D E" | `{}` | `true` | "" (empty string) |
+| "Dr. Xavier L. MD PhD" | `{"DR", "MD", "PHD"}` | `false` | "XAVIER L" |
+
+---
+
 ## Notes
 - null values are ignored and blank/empty values do not get special handling
 - This function **preserves null values** (does not convert them to empty strings).
 - Words are matched **exactly** (e.g., `"DR"` is removed if specified, but `"DRAKE"` remains).
 - Works with **any column name**—simply provide the appropriate names when calling the function.
 - Defaults ensure **no abbreviations are removed**, and **single-letter words are kept** unless explicitly removed.
-
-
