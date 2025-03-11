@@ -1,4 +1,4 @@
-# CleanNames Power Query Function
+# Clean People Names - Power Query Function
 
 ## Purpose
 The `CleanNames` function standardizes text Names data by:
