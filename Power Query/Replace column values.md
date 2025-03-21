@@ -49,8 +49,6 @@ in
 Consider adding option to replace entire cell value or replace subtext. The current implementation will only replace subtext within the cell value. This is due to using Replacer.ReplaceValue() function. To replace entire cell value instead use Replacer.ReplaceValue().
 
 ```m
-Table.ReplaceValue(currentTable,"archive - Scrap","test",Replacer.ReplaceValue,{"Agile.Lifecycle Phase.Category"})
-
 Table.ReplaceValue(
     currentTable,
     replacementRow{0},  // OldValue
